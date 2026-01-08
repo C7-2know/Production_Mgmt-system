@@ -6,7 +6,7 @@ import (
 
 	"soap_factory/infrastructure/repositories"
 	"soap_factory/application/services"
-	"soap_factory/delivery/http/handlers"
+	"soap_factory/delivery/handlers"
 )
 
 func Routes(db *mongo.Database) *gin.Engine {
@@ -25,6 +25,7 @@ func Routes(db *mongo.Database) *gin.Engine {
 	ingredientService := services.NewIngredientService(ingredientRepo)
 	ingredientHandler := NewIngredientHandler(ingredientService)
 
-	ingredientRoutes := router.Group("/ingredients")
+	ingredientRoute := router.Group("/ingredients")
+	IngredientRoutes(ingredientRoute, ingredientHandler)
 	return router
 }
