@@ -40,7 +40,6 @@ func ConnectMongoDB(cfg Config) (*MongoDB, error) {
 		clientOptions.SetAuth(credential)
 	}
 
-	// Connect to MongoDB
 	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to MongoDB: %v", err)
